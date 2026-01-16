@@ -1,0 +1,93 @@
+ИНСТРУКЦИЯ ПО ЗАПУСКУ BACKEND
+
+1. Установка зависимостей:
+   cd backend
+   pip install -r requirements.txt
+
+2. Настройка переменных окружения:
+   Создайте файл .env в корне backend/ (опционально, используются значения по умолчанию)
+
+3. Инициализация баз данных:
+   python scripts/seed.py
+
+4. Запуск всех сервисов в режиме разработки:
+   ./scripts/dev.sh
+
+   Или запуск каждого сервиса отдельно:
+   
+   Auth Service (порт 8001):
+   cd apps/auth_service && uvicorn app.main:app --port 8001 --reload
+   
+   Dictionary Service (порт 8002):
+   cd apps/dictionary_service && uvicorn app.main:app --port 8002 --reload
+   
+   Search Service (порт 8003):
+   cd apps/search_service && uvicorn app.main:app --port 8003 --reload
+   
+   Import/Export Service (порт 8004):
+   cd apps/import_export_service && uvicorn app.main:app --port 8004 --reload
+   
+   Admin Service (порт 8005):
+   cd apps/admin_service && uvicorn app.main:app --port 8005 --reload
+
+5. Доступ к API:
+   - Auth Service: http://localhost:8001/docs
+   - Dictionary Service: http://localhost:8002/docs
+   - Search Service: http://localhost:8003/docs
+   - Import/Export Service: http://localhost:8004/docs
+   - Admin Service: http://localhost:8005/docs
+
+6. Тестовые пользователи (создаются через seed.py):
+   - admin@example.com / admin123 (роль: admin)
+   - editor@example.com / editor123 (роль: editor)
+
+СТРУКТУРА ПРОЕКТА:
+
+backend/
+  apps/
+    auth_service/          - Сервис аутентификации и авторизации
+    dictionary_service/    - Сервис управления терминами и категориями
+    search_service/        - Сервис поиска с FTS5
+    import_export_service/ - Сервис импорта/экспорта данных
+    admin_service/         - Сервис администрирования и аудита
+  libs/
+    shared/                - Общие библиотеки (DTO, security, errors, utils)
+  infra/                   - Docker конфигурация
+  scripts/                 - Скрипты для запуска и инициализации
+
+АРХИТЕКТУРА:
+
+Микросервисная архитектура с разделением на:
+- API слой (routes)
+- Service слой (бизнес-логика)
+- Repository слой (доступ к данным)
+- DB слой (модели и миграции)
+
+Каждый сервис имеет свою базу данных SQLite.
+
+ОСНОВНЫЕ ЭНДПОИНТЫ:
+
+Auth Service:
+  POST /api/v1/auth/register - Регистрация
+  POST /api/v1/auth/login - Вход
+  POST /api/v1/auth/refresh - Обновление токена
+  POST /api/v1/auth/logout - Выход
+  GET /api/v1/profile - Профиль пользователя
+
+Dictionary Service:
+  GET /api/v1/categories - Список категорий
+  GET /api/v1/terms - Список терминов
+  POST /api/v1/terms - Создание термина
+  POST /api/v1/terms/{id}/approve - Одобрение термина
+  POST /api/v1/favorites/{term_id} - Добавить в избранное
+
+Search Service:
+  GET /api/v1/search - Поиск терминов
+  GET /api/v1/search/autocomplete - Автодополнение
+
+Import/Export Service:
+  POST /api/v1/import - Импорт данных
+  GET /api/v1/export - Экспорт данных
+
+Admin Service:
+  GET /api/v1/audits - Логи аудита

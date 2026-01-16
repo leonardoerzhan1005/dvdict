@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  auth-service:
+    build:
+      context: ..
+      dockerfile: infra/docker/Dockerfile.auth
+    ports:
+      - "8001:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./auth_service.db
+      - SECRET_KEY=your-secret-key-change-in-production
+    volumes:
+      - ./data/auth:/app/data
+
+  dictionary-service:
+    build:
+      context: ..
+      dockerfile: infra/docker/Dockerfile.dictionary
+    ports:
+      - "8002:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./dictionary_service.db
+    volumes:
+      - ./data/dictionary:/app/data
+
+  search-service:
+    build:
+      context: ..
+      dockerfile: infra/docker/Dockerfile.search
+    ports:
+      - "8003:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./search_service.db
+    volumes:
+      - ./data/search:/app/data
+
+  import-export-service:
+    build:
+      context: ..
+      dockerfile: infra/docker/Dockerfile.import_export
+    ports:
+      - "8004:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./import_export_service.db
+    volumes:
+      - ./data/import_export:/app/data
+
+  admin-service:
+    build:
+      context: ..
+      dockerfile: infra/docker/Dockerfile.admin
+    ports:
+      - "8005:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./admin_service.db
+    volumes:
+      - ./data/admin:/app/data

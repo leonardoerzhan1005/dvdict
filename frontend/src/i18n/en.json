@@ -1,0 +1,299 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "filter": "Filter",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "all": "All",
+    "none": "None",
+    "select": "Select",
+    "submit": "Submit",
+    "reset": "Reset",
+    "actions": "Actions",
+    "status": "Status",
+    "views": "Views",
+    "created": "Created",
+    "updated": "Updated"
+  },
+  "navigation": {
+    "explore": "Explore",
+    "catalog": "Catalog",
+    "learn": "Learn",
+    "api": "API",
+    "contact": "Contact",
+    "home": "Home",
+    "about": "About",
+    "profile": "Profile",
+    "favorites": "Favorites",
+    "admin": "Admin",
+    "login": "Log In",
+    "logout": "Log Out",
+    "register": "Register",
+    "suggest": "Suggest Term"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "namePlaceholder": "John Doe",
+    "forgotPassword": "Forgot password?",
+    "resetPassword": "Reset Password",
+    "confirmPassword": "Confirm Password",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "rememberMe": "Remember me",
+    "passwordMinLength": "Minimum 8 characters",
+    "registerError": "Registration error",
+    "invalidEmail": "Invalid email"
+  },
+  "home": {
+    "title": "Dictionary of Terms",
+    "subtitle": "Professional terms with translations in Kazakh, Russian and English",
+    "searchPlaceholder": "Enter a term to search...",
+    "popularTerms": "Popular Terms",
+    "categories": "Categories",
+    "allCategories": "All Categories",
+    "sortBy": "Sort by",
+    "sortByUsage": "Usage",
+    "sortByAlpha": "Alphabet",
+    "found": "Found",
+    "noResults": "Nothing found",
+    "tryDifferentQuery": "Try a different query",
+    "backToExplore": "Back to Explore"
+  },
+  "catalog": {
+    "title": "Terms Catalog",
+    "subtitle": "Complete catalog of professional terms with translations in Kazakh, Russian and English",
+    "searchPlaceholder": "Enter a professional term...",
+    "found": "Found",
+    "noTerms": "No terms found",
+    "tryDifferentFilters": "Try changing filters or search query",
+    "sortByUsage": "Popularity",
+    "sortByAlpha": "Alphabetically"
+  },
+  "terms": {
+    "title": "Terms",
+    "create": "Create term",
+    "edit": "Edit term",
+    "definition": "Definition",
+    "fullDefinition": "Full Definition",
+    "shortDefinition": "Short Definition",
+    "examples": "Examples",
+    "synonyms": "Synonyms",
+    "antonyms": "Antonyms",
+    "relatedConcepts": "Related Concepts",
+    "origins": "Origins",
+    "trilingualFramework": "Trilingual Framework",
+    "primaryTranslation": "Primary Translation",
+    "context": "Context",
+    "standardized": "Standardized",
+    "source": "Source",
+    "addToFavorites": "Add to Favorites",
+    "removeFromFavorites": "Remove from Favorites",
+    "proposeCorrection": "Propose Correction",
+    "printPage": "Print Page",
+    "copyUrl": "Copy URL",
+    "notFound": "Term not found",
+    "views": "Views",
+    "status": "Status",
+    "approved": "Approved",
+    "pending": "Pending",
+    "rejected": "Rejected"
+  },
+  "search": {
+    "placeholder": "Search terms...",
+    "results": "Search results",
+    "noResults": "Nothing found",
+    "searching": "Searching...",
+    "enterQuery": "Enter a search query",
+    "from": "From",
+    "to": "To"
+  },
+  "favorites": {
+    "title": "Favorites",
+    "empty": "No favorite terms",
+    "add": "Add to favorites",
+    "remove": "Remove from favorites",
+    "emptyDescription": "You haven't added any terms to favorites yet"
+  },
+  "profile": {
+    "title": "Profile",
+    "edit": "Edit Profile",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "joined": "Joined",
+    "termsCreated": "Terms Created",
+    "suggestions": "Suggestions",
+    "favorites": "Favorites"
+  },
+  "suggestions": {
+    "title": "Suggest Term",
+    "description": "Suggest a new term to be added to the dictionary",
+    "term": "Term",
+    "definition": "Definition",
+    "category": "Category",
+    "submit": "Submit Suggestion",
+    "success": "Suggestion submitted successfully",
+    "error": "Error submitting suggestion"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "dashboard": "Dashboard",
+    "terms": "Terms",
+    "categories": "Categories",
+    "users": "Users",
+    "moderation": "Moderation",
+    "analytics": "Analytics",
+    "settings": "Settings"
+  },
+  "footer": {
+    "about": "About",
+    "api": "API",
+    "contact": "Contact",
+    "suggest": "Suggest Term",
+    "rights": "All rights reserved"
+  },
+  "about": {
+    "badge": "Visual Terminology Index 3.0",
+    "hero": {
+      "title": "Precision meets Visuals",
+      "description": "The world's first trilingual dictionary that adapts its imagery and context to professional standards. Aligning Kazakh, Russian, and English nodes with clinical precision.",
+      "startSearching": "Start Searching",
+      "viewCatalog": "View Visual Catalog"
+    },
+    "stats": {
+      "wordsIndexed": "Words Indexed",
+      "visualCards": "Visual Cards",
+      "expertNodes": "Expert Nodes",
+      "syncRate": "Sync Rate"
+    },
+    "wordOfTheDay": "Word of the Day",
+    "exampleWord": "Infrastructure",
+    "exampleTranslations": "Инфрақұрылым • Инфраструктура",
+    "verification": "Verification",
+    "accuracy": "98.2% Accuracy",
+    "visualTaxonomy": {
+      "badge": "Visual Taxonomy",
+      "title": "Every Word, Visualized.",
+      "description": "Our system generates unique semantic visualizations for professional terms to aid cognitive retention across different linguistic centers."
+    },
+    "trilingualNode": "Trilingual Node Active",
+    "examples": {
+      "digitalization": "Digitalization",
+      "sovereignty": "Sovereignty",
+      "investment": "Investment",
+      "urbanization": "Urbanization"
+    },
+    "categories": {
+      "tech": "TECH",
+      "politics": "POLITICS",
+      "finance": "FINANCE",
+      "urban": "URBAN"
+    },
+    "standardization": {
+      "title": "Standardization for Experts.",
+      "description": "Whether you are drafting legal codes or technical manuals, our dictionary provides the semantic stability required for absolute clarity."
+    },
+    "features": {
+      "legalCodes": "Legal Codes",
+      "legalCodesDesc": "Alignment with national and international legal terminology.",
+      "technicalSync": "Technical Sync",
+      "technicalSyncDesc": "Standardizing IT, energy, and engineering lexicon.",
+      "apiAccess": "API Access",
+      "apiAccessDesc": "Integrate the repository directly into your workflow.",
+      "auditTrail": "Audit Trail",
+      "auditTrailDesc": "Track the evolution and verification of every term."
+    },
+    "cta": {
+      "badge": "Ready to synchronize?",
+      "title": "Bridging the Trilingual Gap.",
+      "description": "Join a network of thousands of linguists and technical experts standardizing the future of language.",
+      "accessRepository": "Access Repository",
+      "institutionalContact": "Institutional Contact"
+    },
+    "footer": "Polyglot Hub — The Standard in Central Asian Terminology"
+  },
+  "contact": {
+    "badge": "Institutional Relations",
+    "hero": {
+      "title": "Get in Touch.",
+      "description": "For API access, institutional partnerships, or to contribute as a linguistic expert, please use the protocol below."
+    },
+    "technicalSupport": "Technical Support",
+    "generalInquiry": "General Inquiry",
+    "globalHub": "Global Hub",
+    "headquarters": "Astana Tech Tower",
+    "offices": {
+      "title": "Global Offices",
+      "description": "Synchronized nodes for regional support.",
+      "node": "Node",
+      "astana": {
+        "city": "Astana",
+        "address": "Mangilik El Ave, 55/8",
+        "phone": "+7 (717) 200-0000"
+      },
+      "almaty": {
+        "city": "Almaty",
+        "address": "Al-Farabi Ave, 77/7",
+        "phone": "+7 (727) 300-0000"
+      },
+      "london": {
+        "city": "London",
+        "address": "Level 39, Canary Wharf",
+        "phone": "+44 20 7000 0000"
+      }
+    },
+    "form": {
+      "fullIdentity": "Full Identity",
+      "fullIdentityPlaceholder": "John Doe",
+      "email": "Communication Node (Email)",
+      "emailPlaceholder": "john@example.com",
+      "category": "Inquiry Category",
+      "message": "Message Context",
+      "messagePlaceholder": "Describe your request...",
+      "submit": "Initialize Transmission",
+      "categories": {
+        "apiAccess": "Institutional API Access",
+        "expertApplication": "Linguistic Expert Application",
+        "errorReport": "Technical Error Report",
+        "collaboration": "General Collaboration"
+      },
+      "sent": {
+        "title": "Protocol Sent",
+        "description": "Our linguistic officers will analyze your request shortly.",
+        "sendAnother": "Send another message"
+      }
+    },
+    "visit": {
+      "title": "Visit the Hub",
+      "description": "Experience trilingual terminology standardization in person at our flagship headquarters.",
+      "hours": "Available Monday – Friday • 09:00 – 18:00"
+    }
+  },
+  "errors": {
+    "generic": "An error occurred",
+    "network": "Network error",
+    "notFound": "Not found",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Forbidden",
+    "serverError": "Server error",
+    "tryAgain": "Try again"
+  }
+}

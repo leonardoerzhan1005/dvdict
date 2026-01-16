@@ -1,0 +1,9 @@
+[tool.poetry]
+name = "shared"
+version = "0.1.0"
+description = "Shared libraries for dictionary-terms backend"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pydantic = "^2.12.5"

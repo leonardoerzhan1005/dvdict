@@ -1,0 +1,120 @@
+ИНСТРУКЦИЯ ПО ДЕПЛОЮ НА СЕРВЕР
+
+Данные для подключения:
+- IP-адрес: 194.32.142.196
+- IPv6-адрес: 2a00:5da0:1000:1::2d9e
+- Пользователь: ubuntu
+- Пароль: N+ClxHm79aStK/7IbKIy0to=
+- Порт SSH: 22
+
+ВАРИАНТ 1: АВТОМАТИЧЕСКИЙ ДЕПЛОЙ (РЕКОМЕНДУЕТСЯ)
+
+1. Убедитесь что у вас установлен sshpass:
+   macOS: brew install hudochenkov/sshpass/sshpass
+   Linux: sudo apt-get install sshpass
+
+2. Запустите скрипт деплоя:
+   cd backend/infra
+   chmod +x deploy.sh
+   ./deploy.sh
+
+Скрипт автоматически:
+- Создаст архив проекта
+- Скопирует его на сервер
+- Развернет все сервисы через Docker Compose
+- Настроит переменные окружения
+
+ВАРИАНТ 2: РУЧНОЙ ДЕПЛОЙ
+
+См. файл deploy_manual.txt для подробных инструкций
+
+СТРУКТУРА ДЕПЛОЯ:
+
+После деплоя на сервере будет следующая структура:
+/opt/dictionary-backend/
+  ├── apps/              - Микросервисы
+  ├── libs/              - Общие библиотеки
+  ├── infra/             - Конфигурация деплоя
+  │   ├── compose.prod.yml
+  │   ├── docker/        - Dockerfile'ы
+  │   ├── nginx/         - Конфигурация Nginx
+  │   └── data/          - Данные (базы данных)
+  └── requirements.txt
+
+СЕРВИСЫ И ПОРТЫ:
+
+После деплоя сервисы будут доступны:
+- Auth Service: http://194.32.142.196:8001
+- Dictionary Service: http://194.32.142.196:8002
+- Search Service: http://194.32.142.196:8003
+- Import/Export Service: http://194.32.142.196:8004
+- Admin Service: http://194.32.142.196:8005
+- Nginx (прокси): http://194.32.142.196
+
+Nginx проксирует запросы по следующим путям:
+- /api/v1/auth/* -> Auth Service
+- /api/v1/profile -> Auth Service
+- /api/v1/categories -> Dictionary Service
+- /api/v1/terms -> Dictionary Service
+- /api/v1/search -> Search Service
+- /api/v1/import -> Import/Export Service
+- /api/v1/export -> Import/Export Service
+- /api/v1/audits -> Admin Service
+
+ПРОВЕРКА ДЕПЛОЯ:
+
+1. Проверка статуса контейнеров:
+   ssh ubuntu@194.32.142.196
+   cd /opt/dictionary-backend/infra
+   docker-compose -f compose.prod.yml ps
+
+2. Проверка логов:
+   docker-compose -f compose.prod.yml logs -f
+
+3. Проверка health endpoints:
+   curl http://localhost/health
+   curl http://localhost:8001/health
+   curl http://localhost:8002/health
+   curl http://localhost:8003/health
+   curl http://localhost:8004/health
+   curl http://localhost:8005/health
+
+4. Проверка API:
+   curl http://194.32.142.196/api/v1/auth/login
+
+ОБНОВЛЕНИЕ ПРИЛОЖЕНИЯ:
+
+1. Внесите изменения в код локально
+
+2. Запустите деплой снова:
+   cd backend/infra
+   ./deploy.sh
+
+   Или вручную:
+   - Скопируйте обновленный код на сервер
+   - Выполните на сервере:
+     cd /opt/dictionary-backend/infra
+     docker-compose -f compose.prod.yml down
+     docker-compose -f compose.prod.yml build --no-cache
+     docker-compose -f compose.prod.yml up -d
+
+БЕЗОПАСНОСТЬ:
+
+ВАЖНО: Перед деплоем в production:
+1. Измените SECRET_KEY в .env файле на сервере
+2. Настройте файрвол (откройте только необходимые порты)
+3. Настройте SSL сертификаты для HTTPS
+4. Ограничьте доступ к административным портам (8001-8005) только из внутренней сети
+5. Настройте регулярные бэкапы баз данных
+
+РЕКОМЕНДАЦИИ:
+
+1. Используйте systemd для автозапуска Docker Compose при перезагрузке сервера
+2. Настройте мониторинг и логирование
+3. Используйте PostgreSQL вместо SQLite для production
+4. Настройте регулярные бэкапы
+5. Используйте reverse proxy (Nginx) для SSL терминации
+
+ПРОБЛЕМЫ И РЕШЕНИЯ:
+
+См. раздел "ПРОБЛЕМЫ И РЕШЕНИЯ" в файле deploy_manual.txt
