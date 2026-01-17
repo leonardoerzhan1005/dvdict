@@ -40,8 +40,8 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate, onLogo
     { route: 'home', label: 'Dictionary', displayLabel: t('navigation.explore') as string },
     { route: 'catalog', label: 'Catalog', displayLabel: t('navigation.catalog') as string },
     { route: 'about', label: 'About', displayLabel: t('navigation.learn') as string },
-    { route: 'api', label: 'API', displayLabel: t('navigation.api') as string },
-    { route: 'contact', label: 'Contact', displayLabel: t('navigation.contact') as string },
+    //{ route: 'api', label: 'API', displayLabel: t('navigation.api') as string },
+   // { route: 'contact', label: 'Contact', displayLabel: t('navigation.contact') as string },
   ];
 
   const handleNavClick = (route: Route) => {
@@ -53,8 +53,8 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate, onLogo
     <>
       {/* HEADER - NEW DESIGN INSPIRED BY REFERENCE */}
       <div className=" from-blue-200 via-blue-100 to-blue-200 px-4 pt-4 pb-4 sticky top-0 z-[100]">
-        <header className="max-w-[1440px] mx-auto bg-white/30 backdrop-blur-md rounded-[2.5rem] px-8 h-24 flex justify-between items-center  border-2 border-blue-250">
-          <div className="flex items-center gap-16">
+        <header className="max-w-[1440px] mx-auto bg-white/30 backdrop-blur-md rounded-[2.5rem] px-8 h-24 flex items-center border-2 border-blue-250">
+          <div className="flex items-center gap-6 shrink-0">
             {/* LOGO */}
             <div 
               className="flex items-center gap-2 cursor-pointer"
@@ -65,16 +65,27 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate, onLogo
                 <div className="w-4 h-9 bg-blue-500 rounded-full rotate-[15deg]"></div>
                 <div className="w-3 h-3 bg-blue-700 rounded-full self-end mb-1"></div>
               </div>
-              <span className="font-extrabold text-2xl tracking-tighter text-blue-900 ml-1">Polyglot</span>
+              <span className="font-extrabold text-2xl tracking-tighter text-blue-900 ml-1">dvdictionary </span>
             </div>
             
             {/* NAVIGATION PILLS */}
-            <nav className="hidden lg:flex items-center gap-4">
+            <nav className="hidden lg:flex
+    flex-wrap
+    justify-center
+    gap-3
+    max-w-[680px]
+    mx-auto">
               {navItems.map((item) => (
                 <button 
                   key={item.route}
                   onClick={() => onNavigate(item.route)}
-                  className={`px-8 py-3 rounded-full flex items-center gap-2 text-sm font-semibold transition-all ${
+                  className={`px-4 xl:px-6 py-2.5
+  rounded-full
+  flex items-center gap-2
+  text-sm font-semibold
+  whitespace-nowrap
+  min-w-fit
+  transition-all ${
                     currentRoute === item.route 
                       ? 'bg-white/80 text-blue-700 shadow-sm' 
                       : 'text-blue-900/70 hover:bg-white/40 hover:text-blue-900'

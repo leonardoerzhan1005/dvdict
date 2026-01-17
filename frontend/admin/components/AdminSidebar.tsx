@@ -1,5 +1,6 @@
 import React from 'react';
 import { AdminTab } from '../AdminLayout';
+import { useTranslation } from '../../src/hooks/useTranslation';
 
 interface AdminSidebarProps {
   currentTab: AdminTab;
@@ -59,12 +60,13 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
   className = '',
   onClose 
 }) => {
+  const { t } = useTranslation();
   const navItems = [
-    { id: 'dashboard' as AdminTab, label: 'Overview', icon: IconDashboard },
-    { id: 'terms' as AdminTab, label: 'Terms', icon: IconDatabase },
-    { id: 'categories' as AdminTab, label: 'Categories', icon: IconFolder },
-    { id: 'analytics' as AdminTab, label: 'Analytics', icon: IconBarChart },
-    { id: 'settings' as AdminTab, label: 'Settings', icon: IconSettings },
+    { id: 'dashboard' as AdminTab, labelKey: 'admin.sidebar.overview', icon: IconDashboard },
+    { id: 'terms' as AdminTab, labelKey: 'admin.sidebar.terms', icon: IconDatabase },
+    { id: 'categories' as AdminTab, labelKey: 'admin.sidebar.categories', icon: IconFolder },
+    { id: 'analytics' as AdminTab, labelKey: 'admin.sidebar.analytics', icon: IconBarChart },
+    { id: 'settings' as AdminTab, labelKey: 'admin.sidebar.settings', icon: IconSettings },
   ];
 
   return (
@@ -89,7 +91,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
       </div>
 
       <div className="px-4 py-2 flex-1 overflow-y-auto">
-        <p className="px-4 text-[10px] text-zinc-500 uppercase tracking-[0.2em] mb-4 font-medium">Menu</p>
+        <p className="px-4 text-[10px] text-zinc-500 uppercase tracking-[0.2em] mb-4 font-medium">{t('admin.sidebar.menu')}</p>
         <nav className="space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -108,7 +110,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
                 }`}
               >
                 <Icon size={18} className={isActive ? 'text-orange-500 drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]' : 'text-zinc-500'} />
-                {item.label}
+                {t(item.labelKey)}
               </button>
             );
           })}
@@ -125,9 +127,9 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
                   <IconDatabase size={24} className="text-white" />
                 </div>
               </div>
-              <h4 className="text-white font-semibold mb-1 text-sm">Domestic Volience </h4>
+              <h4 className="text-white font-semibold mb-1 text-sm">{t('admin.sidebar.domesticViolence')}</h4>
               <p className="text-zinc-400 text-xs mb-4 leading-relaxed font-light">
-                Manage your domestic volience with precision and ease.
+                {t('admin.sidebar.manageViolence')}
               </p>
               <button 
                 onClick={() => {
@@ -136,7 +138,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
                 }}
                 className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white text-xs font-bold py-2.5 rounded-lg transition-all shadow-lg shadow-orange-900/40 border border-orange-400/20"
               >
-                Open Volience
+                {t('admin.sidebar.openViolence')}
               </button>
             </div>
             <div className="absolute top-[-50%] right-[-50%] w-32 h-32 bg-orange-500/20 blur-3xl rounded-full pointer-events-none group-hover:bg-orange-500/30 transition-colors duration-500"></div>

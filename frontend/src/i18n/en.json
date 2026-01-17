@@ -161,7 +161,187 @@
     "users": "Users",
     "moderation": "Moderation",
     "analytics": "Analytics",
-    "settings": "Settings"
+    "settings": "Settings",
+    "sidebar": {
+      "menu": "Menu",
+      "overview": "Overview",
+      "terms": "Terms",
+      "categories": "Categories",
+      "analytics": "Analytics",
+      "settings": "Settings",
+      "domesticViolence": "Domestic Violence",
+      "manageViolence": "Manage your domestic violence with precision and ease.",
+      "openViolence": "Open Violence"
+    },
+    "layout": {
+      "dashboardTitle": "Terminology Terms",
+      "termsTitle": "Term Index",
+      "categoriesTitle": "Category Management",
+      "analyticsTitle": "Linguistic Analytics",
+      "settingsTitle": "Control your preferences!",
+      "defaultTitle": "dvdictionary Management"
+    },
+    "header": {
+      "search": "Search",
+      "searchPlaceholder": "Search (⌘K)",
+      "notifications": "Notifications",
+      "markAsRead": "Mark as read",
+      "all": "All",
+      "unread": "Unread",
+      "newTermAdded": "New term added: {term}",
+      "repositorySyncCompleted": "Repository sync completed",
+      "hoursAgo": "{hours}h ago"
+    },
+    "dashboard": {
+      "title": "Terminology Repository",
+      "subtitle": "Manage and explore your trilingual terminology.",
+      "searchPlaceholder": "Search terms...",
+      "filters": {
+        "allTerms": "All terms",
+        "verified": "Verified",
+        "pending": "Pending",
+        "draft": "Draft",
+        "technical": "Technical",
+        "political": "Political"
+      },
+      "popularTerms": "Popular Terms",
+      "popularTermsSubtitle": "Most frequently accessed terminology entries.",
+      "quickAccess": "Quick Access",
+      "quickAccessSubtitle": "Navigate to key sections of the admin panel.",
+      "termRepository": "Term repository",
+      "entries": "entries",
+      "usageStatistics": "Usage statistics",
+      "discussion": "Discussion",
+      "communityFeedback": "Community feedback",
+      "exportData": "Export data",
+      "csvJsonFormats": "CSV, JSON formats",
+      "createCollection": "Create Collection",
+      "loading": "Loading data...",
+      "noTermsFound": "No terms found",
+      "tryAdjustingFilters": "Try adjusting your search or filter.",
+      "clearFilters": "Clear filters",
+      "noTermsYet": "No terms yet",
+      "status": "Status",
+      "category": "Category",
+      "general": "General",
+      "noTranslation": "No translation"
+    },
+    "terminology": {
+      "title": "Term Index",
+      "subtitle": "Cross-referencing {count} trilingual mappings in the master terms.",
+      "badge": "Node / Archive",
+      "initializeNewEntry": "Initialize New Entry",
+      "searchPlaceholder": "Filter by keyword, translation, or metadata...",
+      "table": {
+        "coreDescriptor": "Core Descriptor",
+        "localKk": "Local (KK)",
+        "localRu": "Local (RU)",
+        "category": "Category",
+        "operations": "Operations"
+      },
+      "undefined": "Undefined",
+      "uncategorized": "Uncategorized",
+      "loading": "Loading terms...",
+      "empty": "Repository is currently empty",
+      "addFirstRecord": "Add first record",
+      "deleteConfirm": "Are you sure you want to purge this record? This action is permanent.",
+      "deleteError": "Error deleting term",
+      "saveError": "Error saving term",
+      "loadError": "Error loading term for edit"
+    },
+    "categories": {
+      "title": "Category Index",
+      "subtitle": "Category management ({count} entries).",
+      "badge": "Node / Categories",
+      "addCategory": "Add Category",
+      "table": {
+        "id": "ID",
+        "title": "Title",
+        "slug": "Slug",
+        "parent": "Parent",
+        "operations": "Operations"
+      },
+      "root": "Root",
+      "loading": "Loading categories...",
+      "empty": "No categories found",
+      "addFirstCategory": "Add first category",
+      "deleteConfirm": "Are you sure you want to delete this category? This action is irreversible.",
+      "deleteError": "Error deleting category"
+    },
+    "analytics": {
+      "title": "Linguistic Analytics",
+      "subtitle": "Deep insights into terminology usage patterns",
+      "searchVolumeTrends": "Search Volume Trends",
+      "last30Days": "Last 30 Days",
+      "lastQuarter": "Last Quarter",
+      "languageAffinity": "Language Affinity",
+      "english": "English (EN)",
+      "kazakh": "Kazakh (KK)",
+      "russian": "Russian (RU)",
+      "basedOnEvents": "Based on {count}k search events this month",
+      "topSearchedTerms": "Top Searched Terms",
+      "exportCsv": "Export CSV",
+      "termIdentity": "Term Identity",
+      "globalRequests": "Global Requests",
+      "momentum": "Momentum",
+      "hits": "hits"
+    },
+    "settings": {
+      "title": "Control your preferences!",
+      "sections": {
+        "accountSettings": "Account settings",
+        "securitySettings": "Security settings",
+        "notifications": "Notifications",
+        "billingSettings": "Billing settings",
+        "billingHistory": "Billing history"
+      },
+      "password": {
+        "title": "Password",
+        "subtitle": "Update your password to keep your account secure.",
+        "currentPassword": "Current password",
+        "newPassword": "New password",
+        "confirmPassword": "Confirm password",
+        "currentPasswordPlaceholder": "Enter current password",
+        "newPasswordPlaceholder": "Enter new password (min 8 characters)",
+        "confirmPasswordPlaceholder": "Confirm new password",
+        "minCharacters": "Minimum 8 characters",
+        "changePassword": "Change Password",
+        "changing": "Changing...",
+        "allFieldsRequired": "All fields are required",
+        "minLengthRequired": "New password must be at least 8 characters",
+        "passwordsDontMatch": "New passwords do not match",
+        "samePassword": "New password must be different from current",
+        "success": "Password successfully changed!",
+        "error": "Error changing password. Check your current password."
+      },
+      "accountSecurity": {
+        "title": "Account Security",
+        "subtitle": "Information about your account security status.",
+        "emailVerification": "Email Verification",
+        "emailVerified": "Your email is verified",
+        "pleaseVerify": "Please verify your email address",
+        "verified": "Verified",
+        "pending": "Pending",
+        "accountRole": "Account Role",
+        "currentRole": "Your current role: {role}"
+      },
+      "activeSessions": {
+        "title": "Active Sessions",
+        "subtitle": "Manage the devices connected to your account",
+        "logoutAll": "Log out from all devices",
+        "currentDevice": "Current Device",
+        "thisBrowser": "This browser session",
+        "active": "Active"
+      },
+      "accountInformation": {
+        "title": "Account Information",
+        "subtitle": "Update your account information.",
+        "email": "Email",
+        "emailCannotChange": "Email cannot be changed",
+        "name": "Name"
+      },
+      "comingSoon": "This section is coming soon..."
+    }
   },
   "footer": {
     "about": "About",
@@ -228,7 +408,7 @@
       "accessRepository": "Access Repository",
       "institutionalContact": "Institutional Contact"
     },
-    "footer": "Polyglot Hub — The Standard in Central Asian Terminology"
+    "footer": "dvdictionary Hub — The Standard in Central Asian Terminology"
   },
   "contact": {
     "badge": "Institutional Relations",

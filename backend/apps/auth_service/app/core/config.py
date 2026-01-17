@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     # Создаем директорию если не существует
     _db_path.parent.mkdir(parents=True, exist_ok=True)
     database_url: str = f"sqlite:///{_db_path}"
+    # SECRET_KEY автоматически читается из переменной окружения SECRET_KEY через BaseSettings
     secret_key: str = "your-secret-key-change-in-production"
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30

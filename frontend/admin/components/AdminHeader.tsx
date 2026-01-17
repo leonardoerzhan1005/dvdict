@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { AdminSearchModal } from './AdminSearchModal';
 import { AdminTab } from '../AdminLayout';
+import { useTranslation } from '../../src/hooks/useTranslation';
 
 const IconSearch = ({ size = 18, className = '' }: { size?: number; className?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -60,6 +61,7 @@ interface AdminHeaderProps {
 }
 
 export const AdminHeader: React.FC<AdminHeaderProps> = ({ title, toggleSidebar, onNavigate }) => {
+  const { t } = useTranslation();
   const [showNotifications, setShowNotifications] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const notificationRef = useRef<HTMLDivElement>(null);
@@ -101,7 +103,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ title, toggleSidebar, 
           <button 
             onClick={() => setIsSearchOpen(true)}
             className="w-10 h-10 rounded-full border border-white/5 bg-white/[0.03] flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/[0.08] transition-colors group"
-            title="Search (⌘K)"
+            title={t('admin.header.searchPlaceholder')}
           >
             <IconSearch size={18} className="group-hover:scale-110 transition-transform" />
           </button>
@@ -118,17 +120,17 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ title, toggleSidebar, 
             {showNotifications && (
               <div className="absolute top-full right-0 mt-4 w-96 bg-zinc-950 border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-200 origin-top-right ring-1 ring-white/10">
                 <div className="p-4 border-b border-white/5 flex items-center justify-between bg-zinc-900/50">
-                  <h3 className="text-white font-medium text-sm">Notifications</h3>
+                  <h3 className="text-white font-medium text-sm">{t('admin.header.notifications')}</h3>
                   <div className="flex items-center gap-4">
                     <button className="text-[10px] text-orange-500 font-medium flex items-center gap-1.5 hover:text-orange-400 transition-colors">
-                      <IconCheck size={12} /> Mark as read
+                      <IconCheck size={12} /> {t('admin.header.markAsRead')}
                     </button>
                     <IconSettings size={14} className="text-zinc-500 hover:text-white cursor-pointer transition-colors" />
                   </div>
                 </div>
                 <div className="px-4 pt-3 flex gap-4 text-sm border-b border-white/5 bg-zinc-950/80">
-                  <button className="pb-3 text-orange-500 font-medium border-b-2 border-orange-500 text-xs">All <span className="bg-orange-500/20 text-orange-500 text-[10px] px-1.5 py-0.5 rounded-full ml-1">12</span></button>
-                  <button className="pb-3 text-zinc-500 hover:text-zinc-300 font-medium text-xs">Unread <span className="bg-zinc-800 text-zinc-400 text-[10px] px-1.5 py-0.5 rounded-full ml-1 border border-white/5">3</span></button>
+                  <button className="pb-3 text-orange-500 font-medium border-b-2 border-orange-500 text-xs">{t('admin.header.all')} <span className="bg-orange-500/20 text-orange-500 text-[10px] px-1.5 py-0.5 rounded-full ml-1">12</span></button>
+                  <button className="pb-3 text-zinc-500 hover:text-zinc-300 font-medium text-xs">{t('admin.header.unread')} <span className="bg-zinc-800 text-zinc-400 text-[10px] px-1.5 py-0.5 rounded-full ml-1 border border-white/5">3</span></button>
                 </div>
                 <div className="max-h-[400px] overflow-y-auto">
                   <div className="p-4 hover:bg-white/5 transition-colors cursor-pointer border-b border-white/5 flex gap-3 relative group">
@@ -136,8 +138,8 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ title, toggleSidebar, 
                       <IconFileText size={16} className="text-zinc-300" />
                     </div>
                     <div className="pr-4">
-                      <p className="text-xs font-medium text-white mb-0.5 leading-snug">New term added: Sovereignty</p>
-                      <p className="text-[10px] text-zinc-500">2h ago</p>
+                      <p className="text-xs font-medium text-white mb-0.5 leading-snug">{t('admin.header.newTermAdded', { term: 'Sovereignty' })}</p>
+                      <p className="text-[10px] text-zinc-500">{t('admin.header.hoursAgo', { hours: 2 })}</p>
                     </div>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-emerald-500 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.5)]"></div>
                   </div>
@@ -147,8 +149,8 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ title, toggleSidebar, 
                       <IconMessageCircle size={16} className="text-zinc-300" />
                     </div>
                     <div className="pr-4">
-                      <p className="text-xs font-medium text-white mb-0.5 leading-snug">Repository sync completed</p>
-                      <p className="text-[10px] text-zinc-500">3h ago</p>
+                      <p className="text-xs font-medium text-white mb-0.5 leading-snug">{t('admin.header.repositorySyncCompleted')}</p>
+                      <p className="text-[10px] text-zinc-500">{t('admin.header.hoursAgo', { hours: 3 })}</p>
                     </div>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-emerald-500 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.5)]"></div>
                   </div>

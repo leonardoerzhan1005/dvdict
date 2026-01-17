@@ -161,7 +161,187 @@
     "users": "Пользователи",
     "moderation": "Модерация",
     "analytics": "Аналитика",
-    "settings": "Настройки"
+    "settings": "Настройки",
+    "sidebar": {
+      "menu": "Меню",
+      "overview": "Обзор",
+      "terms": "Термины",
+      "categories": "Категории",
+      "analytics": "Аналитика",
+      "settings": "Настройки",
+      "domesticViolence": "Домашнее насилие",
+      "manageViolence": "Управляйте домашним насилием с точностью и легкостью.",
+      "openViolence": "Открыть насилие"
+    },
+    "layout": {
+      "dashboardTitle": "Терминологические термины",
+      "termsTitle": "Индекс терминов",
+      "categoriesTitle": "Управление категориями",
+      "analyticsTitle": "Лингвистическая аналитика",
+      "settingsTitle": "Управляйте своими настройками!",
+      "defaultTitle": "Управление dvdictionary"
+    },
+    "header": {
+      "search": "Поиск",
+      "searchPlaceholder": "Поиск (⌘K)",
+      "notifications": "Уведомления",
+      "markAsRead": "Отметить как прочитанное",
+      "all": "Все",
+      "unread": "Непрочитанные",
+      "newTermAdded": "Добавлен новый термин: {term}",
+      "repositorySyncCompleted": "Синхронизация репозитория завершена",
+      "hoursAgo": "{hours}ч назад"
+    },
+    "dashboard": {
+      "title": "Репозиторий терминологии",
+      "subtitle": "Управляйте и изучайте трехъязычную терминологию.",
+      "searchPlaceholder": "Поиск терминов...",
+      "filters": {
+        "allTerms": "Все термины",
+        "verified": "Проверенные",
+        "pending": "В ожидании",
+        "draft": "Черновик",
+        "technical": "Технические",
+        "political": "Политические"
+      },
+      "popularTerms": "Популярные термины",
+      "popularTermsSubtitle": "Наиболее часто используемые записи терминологии.",
+      "quickAccess": "Быстрый доступ",
+      "quickAccessSubtitle": "Переход к ключевым разделам панели администратора.",
+      "termRepository": "Репозиторий терминов",
+      "entries": "записей",
+      "usageStatistics": "Статистика использования",
+      "discussion": "Обсуждение",
+      "communityFeedback": "Обратная связь сообщества",
+      "exportData": "Экспорт данных",
+      "csvJsonFormats": "Форматы CSV, JSON",
+      "createCollection": "Создать коллекцию",
+      "loading": "Загрузка данных...",
+      "noTermsFound": "Термины не найдены",
+      "tryAdjustingFilters": "Попробуйте изменить поиск или фильтр.",
+      "clearFilters": "Очистить фильтры",
+      "noTermsYet": "Терминов пока нет",
+      "status": "Статус",
+      "category": "Категория",
+      "general": "Общее",
+      "noTranslation": "Нет перевода"
+    },
+    "terminology": {
+      "title": "Индекс терминов",
+      "subtitle": "Перекрестная ссылка {count} трехъязычных сопоставлений в основных терминах.",
+      "badge": "Узел / Архив",
+      "initializeNewEntry": "Инициализировать новую запись",
+      "searchPlaceholder": "Фильтр по ключевому слову, переводу или метаданным...",
+      "table": {
+        "coreDescriptor": "Основной дескриптор",
+        "localKk": "Локальный (KK)",
+        "localRu": "Локальный (RU)",
+        "category": "Категория",
+        "operations": "Операции"
+      },
+      "undefined": "Не определено",
+      "uncategorized": "Без категории",
+      "loading": "Загрузка терминов...",
+      "empty": "Репозиторий пуст",
+      "addFirstRecord": "Добавить первую запись",
+      "deleteConfirm": "Вы уверены, что хотите удалить эту запись? Это действие необратимо.",
+      "deleteError": "Ошибка при удалении термина",
+      "saveError": "Ошибка при сохранении термина",
+      "loadError": "Ошибка при загрузке термина для редактирования"
+    },
+    "categories": {
+      "title": "Индекс категорий",
+      "subtitle": "Управление категориями ({count} записей).",
+      "badge": "Узел / Категории",
+      "addCategory": "Добавить категорию",
+      "table": {
+        "id": "ID",
+        "title": "Название",
+        "slug": "Слаг",
+        "parent": "Родитель",
+        "operations": "Операции"
+      },
+      "root": "Корневая",
+      "loading": "Загрузка категорий...",
+      "empty": "Категории не найдены",
+      "addFirstCategory": "Добавить первую категорию",
+      "deleteConfirm": "Вы уверены, что хотите удалить эту категорию? Это действие необратимо.",
+      "deleteError": "Ошибка при удалении категории"
+    },
+    "analytics": {
+      "title": "Лингвистическая аналитика",
+      "subtitle": "Глубокое понимание паттернов использования терминологии",
+      "searchVolumeTrends": "Тенденции объема поиска",
+      "last30Days": "Последние 30 дней",
+      "lastQuarter": "Последний квартал",
+      "languageAffinity": "Языковое сродство",
+      "english": "Английский (EN)",
+      "kazakh": "Казахский (KK)",
+      "russian": "Русский (RU)",
+      "basedOnEvents": "На основе {count}к событий поиска в этом месяце",
+      "topSearchedTerms": "Топ искомых терминов",
+      "exportCsv": "Экспорт CSV",
+      "termIdentity": "Идентичность термина",
+      "globalRequests": "Глобальные запросы",
+      "momentum": "Импульс",
+      "hits": "попаданий"
+    },
+    "settings": {
+      "title": "Управляйте своими настройками!",
+      "sections": {
+        "accountSettings": "Настройки аккаунта",
+        "securitySettings": "Настройки безопасности",
+        "notifications": "Уведомления",
+        "billingSettings": "Настройки оплаты",
+        "billingHistory": "История оплаты"
+      },
+      "password": {
+        "title": "Пароль",
+        "subtitle": "Обновите пароль для обеспечения безопасности аккаунта.",
+        "currentPassword": "Текущий пароль",
+        "newPassword": "Новый пароль",
+        "confirmPassword": "Подтвердите пароль",
+        "currentPasswordPlaceholder": "Введите текущий пароль",
+        "newPasswordPlaceholder": "Введите новый пароль (мин. 8 символов)",
+        "confirmPasswordPlaceholder": "Подтвердите новый пароль",
+        "minCharacters": "Минимум 8 символов",
+        "changePassword": "Изменить пароль",
+        "changing": "Изменение...",
+        "allFieldsRequired": "Все поля обязательны для заполнения",
+        "minLengthRequired": "Новый пароль должен содержать минимум 8 символов",
+        "passwordsDontMatch": "Новые пароли не совпадают",
+        "samePassword": "Новый пароль должен отличаться от текущего",
+        "success": "Пароль успешно изменен!",
+        "error": "Ошибка при изменении пароля. Проверьте текущий пароль."
+      },
+      "accountSecurity": {
+        "title": "Безопасность аккаунта",
+        "subtitle": "Информация о статусе безопасности вашего аккаунта.",
+        "emailVerification": "Подтверждение email",
+        "emailVerified": "Ваш email подтвержден",
+        "pleaseVerify": "Пожалуйста, подтвердите ваш email адрес",
+        "verified": "Подтверждено",
+        "pending": "В ожидании",
+        "accountRole": "Роль аккаунта",
+        "currentRole": "Ваша текущая роль: {role}"
+      },
+      "activeSessions": {
+        "title": "Активные сессии",
+        "subtitle": "Управление устройствами, подключенными к вашему аккаунту",
+        "logoutAll": "Выйти со всех устройств",
+        "currentDevice": "Текущее устройство",
+        "thisBrowser": "Эта сессия браузера",
+        "active": "Активно"
+      },
+      "accountInformation": {
+        "title": "Информация об аккаунте",
+        "subtitle": "Обновите информацию об аккаунте.",
+        "email": "Email",
+        "emailCannotChange": "Email нельзя изменить",
+        "name": "Имя"
+      },
+      "comingSoon": "Этот раздел скоро появится..."
+    }
   },
   "footer": {
     "about": "О проекте",
@@ -228,7 +408,7 @@
       "accessRepository": "Доступ к репозиторию",
       "institutionalContact": "Институциональный контакт"
     },
-    "footer": "Polyglot Hub — Стандарт в терминологии Центральной Азии"
+    "footer": "dvdictionary Hub — Стандарт в терминологии Центральной Азии"
   },
   "contact": {
     "badge": "Институциональные отношения",

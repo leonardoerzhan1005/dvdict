@@ -16,7 +16,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="space-y-6 md:col-span-2">
             <div className="flex items-center gap-3">
               <div className="w-6 h-6 bg-slate-900 rounded-lg"></div>
-              <span className="font-black text-xl tracking-tighter">Polyglot Hub</span>
+              <span className="font-black text-xl tracking-tighter">dvdictionary </span>
             </div>
             <p className="text-slate-400 text-sm font-medium max-w-xs leading-relaxed">
               The unified platform for professional trilingual terminology management and
@@ -80,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
         <div className="pt-12 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6">
           <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">
-            © 2024 Polyglot Lingua. {t('footer.rights') as string}
+            © 2024 dvdictionary . {t('footer.rights') as string}
           </span>
           <div className="flex gap-4">
             <div className="w-8 h-8 rounded-full border border-slate-100 flex items-center justify-center text-slate-300">

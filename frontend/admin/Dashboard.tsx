@@ -3,6 +3,7 @@ import { AdminTermResult } from '../types/admin';
 import { adminService } from '../services/api/adminService';
 import { Language } from '../types';
 import { AddCollectionWizard } from './components/AddCollectionWizard';
+import { useTranslation } from '../src/hooks/useTranslation';
 
 const IconSearch = ({ size = 16, className = '' }: { size?: number; className?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -84,7 +85,8 @@ const IconPlus = ({ size = 14, className = '' }: { size?: number; className?: st
 );
 
 export const AdminDashboard: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState('All terms');
+  const { t } = useTranslation();
+  const [activeFilter, setActiveFilter] = useState('allTerms');
   const [searchQuery, setSearchQuery] = useState('');
   const [isCreatingCollection, setIsCreatingCollection] = useState(false);
   const [terms, setTerms] = useState<AdminTermResult[]>([]);
@@ -106,12 +108,12 @@ export const AdminDashboard: React.FC = () => {
   }, []);
 
   const filters = [
-    { label: 'All terms', count: terms.length },
-    { label: 'Verified', count: terms.filter(t => t.status === 'Verified').length },
-    { label: 'Pending', count: terms.filter(t => t.status === 'Pending').length },
-    { label: 'Draft', count: terms.filter(t => t.status === 'Draft').length },
-    { label: 'Technical', count: terms.filter(t => t.category === 'Technical').length },
-    { label: 'Political', count: terms.filter(t => t.category === 'Political').length },
+    { key: 'allTerms', labelKey: 'admin.dashboard.filters.allTerms', count: terms.length },
+    { key: 'verified', labelKey: 'admin.dashboard.filters.verified', count: terms.filter(t => t.status === 'Verified').length },
+    { key: 'pending', labelKey: 'admin.dashboard.filters.pending', count: terms.filter(t => t.status === 'Pending').length },
+    { key: 'draft', labelKey: 'admin.dashboard.filters.draft', count: terms.filter(t => t.status === 'Draft').length },
+    { key: 'technical', labelKey: 'admin.dashboard.filters.technical', count: terms.filter(t => t.category === 'Technical').length },
+    { key: 'political', labelKey: 'admin.dashboard.filters.political', count: terms.filter(t => t.category === 'Political').length },
   ];
 
   const filteredTerms = terms.filter(term => {
@@ -120,11 +122,16 @@ export const AdminDashboard: React.FC = () => {
       term.translations.ru?.toLowerCase().includes(searchQuery.toLowerCase());
     
     let matchesFilter = true;
-    if (activeFilter !== 'All terms') {
-      if (activeFilter === 'Verified' || activeFilter === 'Pending' || activeFilter === 'Draft') {
-        matchesFilter = term.status === activeFilter;
+    if (activeFilter !== 'allTerms') {
+      if (activeFilter === 'verified' || activeFilter === 'pending' || activeFilter === 'draft') {
+        const statusMap: Record<string, string> = {
+          'verified': 'Verified',
+          'pending': 'Pending',
+          'draft': 'Draft',
+        };
+        matchesFilter = term.status === statusMap[activeFilter];
       } else {
-        matchesFilter = term.category === activeFilter;
+        matchesFilter = term.category === activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1);
       }
     }
 
@@ -134,10 +141,10 @@ export const AdminDashboard: React.FC = () => {
   const popularTerms = terms.slice(0, 4);
 
   const hubItems = [
-    { title: 'Term repository', subtitle: `${terms.length} entries`, icon: IconDatabase },
-    { title: 'Analytics', subtitle: 'Usage statistics', icon: IconBarChart },
-    { title: 'Discussion', subtitle: 'Community feedback', icon: IconMessageCircle },
-    { title: 'Export data', subtitle: 'CSV, JSON formats', icon: IconShare },
+    { titleKey: 'admin.dashboard.termRepository', subtitleKey: 'admin.dashboard.entries', count: terms.length, icon: IconDatabase },
+    { titleKey: 'admin.dashboard.quickAccess', subtitleKey: 'admin.dashboard.usageStatistics', icon: IconBarChart },
+    { titleKey: 'admin.dashboard.discussion', subtitleKey: 'admin.dashboard.communityFeedback', icon: IconMessageCircle },
+    { titleKey: 'admin.dashboard.exportData', subtitleKey: 'admin.dashboard.csvJsonFormats', icon: IconShare },
   ];
 
   const handleCollectionSave = useCallback(async (collection: { title: string; description: string; category: string; terms: AdminTermResult[] }) => {
@@ -150,14 +157,14 @@ export const AdminDashboard: React.FC = () => {
       setTerms(updatedTerms);
     } catch (error) {
       console.error('Error saving collection:', error);
-      alert('Ошибка при сохранении коллекции');
+      alert(t('common.error'));
     }
   }, []);
 
   if (isLoading) {
     return (
       <div className="max-w-[1440px] mx-auto animate-fade-up flex items-center justify-center py-20">
-        <div className="text-white text-lg">Загрузка данных...</div>
+        <div className="text-white text-lg">{t('admin.dashboard.loading')}</div>
       </div>
     );
   }
@@ -180,8 +187,8 @@ export const AdminDashboard: React.FC = () => {
           <div>
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h2 className="text-xl font-medium text-white mb-1">Terminology Repository</h2>
-                <p className="text-zinc-500 text-sm">Manage and explore your trilingual terminology.</p>
+                <h2 className="text-xl font-medium text-white mb-1">{t('admin.dashboard.title')}</h2>
+                <p className="text-zinc-500 text-sm">{t('admin.dashboard.subtitle')}</p>
               </div>
               
               {/* Search Component */}
@@ -191,7 +198,7 @@ export const AdminDashboard: React.FC = () => {
                 </div>
                 <input 
                   type="text" 
-                  placeholder="Search terms..." 
+                  placeholder={t('admin.dashboard.searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10 pr-10 py-2.5 bg-[#121214] border border-white/10 rounded-full text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-orange-500/50 focus:bg-[#18181b] w-full md:w-64 transition-all shadow-sm"
@@ -211,17 +218,17 @@ export const AdminDashboard: React.FC = () => {
             <div className="flex flex-wrap items-center gap-2 mb-8">
               {filters.map((filter) => (
                 <button 
-                  key={filter.label}
-                  onClick={() => setActiveFilter(filter.label)}
+                  key={filter.key}
+                  onClick={() => setActiveFilter(filter.key)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 border ${
-                    activeFilter === filter.label 
+                    activeFilter === filter.key 
                     ? 'bg-orange-600 border-orange-600 text-white shadow-lg shadow-orange-900/40' 
                     : 'bg-[#121214] border-white/5 text-zinc-400 hover:text-zinc-200 hover:bg-white/5'
                   }`}
                 >
-                  {filter.label}
+                  {t(filter.labelKey)}
                   <span className={`px-1.5 py-0.5 rounded-full text-[10px] ${
-                    activeFilter === filter.label 
+                    activeFilter === filter.key 
                     ? 'bg-orange-500/50 text-white' 
                     : 'bg-zinc-800 text-zinc-500'
                   }`}>
@@ -251,11 +258,11 @@ export const AdminDashboard: React.FC = () => {
                       <div className="absolute top-3 left-3 flex gap-2">
                         <div className="bg-white/90 backdrop-blur text-black px-2 py-1 rounded-md flex items-center gap-1 text-[10px] font-bold shadow-lg">
                           <IconBookOpen size={10} />
-                          {term.category || 'General'}
+                          {term.category || t('admin.dashboard.general')}
                         </div>
                         <div className="bg-white/90 backdrop-blur text-black px-2 py-1 rounded-md flex items-center gap-1 text-[10px] font-bold shadow-lg">
                           <IconClock size={10} />
-                          {term.status || 'Draft'}
+                          {term.status || t('admin.dashboard.filters.draft')}
                         </div>
                       </div>
 
@@ -271,11 +278,11 @@ export const AdminDashboard: React.FC = () => {
                       <h4 className="text-orange-500 text-[11px] font-medium mb-1.5">{term.word}</h4>
                       
                       <h3 className="text-white text-sm font-medium leading-snug mb-4 line-clamp-2 flex-1">
-                        {term.translations.kk || term.translations.ru || term.translations.en || 'No translation'}
+                        {term.translations.kk || term.translations.ru || term.translations.en || t('admin.dashboard.noTranslation')}
                       </h3>
 
                       <div className="flex items-center gap-3 mt-auto">
-                        <span className="text-[10px] text-zinc-500 font-medium">Status:</span>
+                        <span className="text-[10px] text-zinc-500 font-medium">{t('admin.dashboard.status')}:</span>
                         <div className="flex-1 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
                           <div 
                             className="h-full rounded-full transition-all duration-1000" 
@@ -300,13 +307,13 @@ export const AdminDashboard: React.FC = () => {
               <div className="w-16 h-16 bg-zinc-900 rounded-full flex items-center justify-center mb-4 text-zinc-600">
                 <IconSearch size={24} />
               </div>
-              <h3 className="text-zinc-300 font-medium mb-1">No terms found</h3>
-              <p className="text-zinc-500 text-sm">Try adjusting your search or filter.</p>
+              <h3 className="text-zinc-300 font-medium mb-1">{t('admin.dashboard.noTermsFound')}</h3>
+              <p className="text-zinc-500 text-sm">{t('admin.dashboard.tryAdjustingFilters')}</p>
               <button 
-                onClick={() => {setSearchQuery(''); setActiveFilter('All terms');}}
+                onClick={() => {setSearchQuery(''); setActiveFilter('allTerms');}}
                 className="mt-6 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-medium rounded-lg transition-colors"
               >
-                Clear filters
+                {t('admin.dashboard.clearFilters')}
               </button>
             </div>
           )}
@@ -316,9 +323,9 @@ export const AdminDashboard: React.FC = () => {
         <div className="xl:col-span-1 space-y-8">
           {/* Popular Terms Widget */}
           <div className="bg-[#121214] border border-white/5 rounded-3xl p-6">
-            <h3 className="text-base font-medium text-white mb-2">Popular Terms</h3>
+            <h3 className="text-base font-medium text-white mb-2">{t('admin.dashboard.popularTerms')}</h3>
             <p className="text-zinc-500 text-xs mb-6 leading-relaxed">
-              Most frequently accessed terminology entries.
+              {t('admin.dashboard.popularTermsSubtitle')}
             </p>
 
             <div className="space-y-3">
@@ -333,16 +340,16 @@ export const AdminDashboard: React.FC = () => {
                   <IconChevronRight size={14} className="text-zinc-600 group-hover:text-white transition-colors" />
                 </button>
               )) : (
-                <p className="text-zinc-500 text-xs text-center py-4">No terms yet</p>
+                <p className="text-zinc-500 text-xs text-center py-4">{t('admin.dashboard.noTermsYet')}</p>
               )}
             </div>
           </div>
 
           {/* Hub Widget */}
           <div className="bg-[#121214] border border-white/5 rounded-3xl p-6">
-            <h3 className="text-base font-medium text-white mb-2">Quick Access</h3>
+            <h3 className="text-base font-medium text-white mb-2">{t('admin.dashboard.quickAccess')}</h3>
             <p className="text-zinc-500 text-xs mb-6 leading-relaxed">
-              Navigate to key sections of the admin panel.
+              {t('admin.dashboard.quickAccessSubtitle')}
             </p>
 
             <div className="space-y-4">
@@ -355,8 +362,8 @@ export const AdminDashboard: React.FC = () => {
                         <Icon size={18} fill={i === 0 ? "currentColor" : "none"} />
                       </div>
                       <div className="text-left">
-                        <div className="text-sm text-zinc-200 font-medium group-hover:text-white">{item.title}</div>
-                        <div className="text-[10px] text-zinc-500">{item.subtitle}</div>
+                        <div className="text-sm text-zinc-200 font-medium group-hover:text-white">{t(item.titleKey)}</div>
+                        <div className="text-[10px] text-zinc-500">{item.count ? `${item.count} ${t(item.subtitleKey)}` : t(item.subtitleKey)}</div>
                       </div>
                     </div>
                     <IconChevronRight size={14} className="text-zinc-600 group-hover:text-white transition-colors" />
@@ -370,7 +377,7 @@ export const AdminDashboard: React.FC = () => {
               className="w-full mt-6 px-4 py-3 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-orange-900/40 border border-orange-400/20 flex items-center justify-center gap-2"
             >
               <IconPlus size={14} />
-              Create Collection
+              {t('admin.dashboard.createCollection')}
             </button>
           </div>
         </div>

@@ -4,6 +4,10 @@ import { Category } from '../services/api/dictionaryService';
 import { dictionaryService } from '../services/api/dictionaryService';
 import { Language } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useTranslation } from '../src/hooks/useTranslation';
+import { AdminPagination } from './components/AdminPagination';
+
+const ITEMS_PER_PAGE = 20;
 
 const IconEdit = ({ size = 16, className = '' }: { size?: number; className?: string }) => (
   <svg className={className} width={size} height={size} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -18,9 +22,11 @@ const IconTrash = ({ size = 16, className = '' }: { size?: number; className?: s
 );
 
 export const CategoryManager: React.FC = () => {
+  const { t } = useTranslation();
   const [isWizardMode, setIsWizardMode] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [allCategories, setAllCategories] = useState<Category[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const { language } = useLanguage();
 
@@ -32,7 +38,8 @@ export const CategoryManager: React.FC = () => {
     setIsLoading(true);
     try {
       const loadedCategories = await dictionaryService.getCategories(language);
-      setCategories(loadedCategories);
+      setAllCategories(loadedCategories);
+      setCurrentPage(1);
     } catch (error) {
       console.error('Error loading categories:', error);
     } finally {
@@ -55,16 +62,16 @@ export const CategoryManager: React.FC = () => {
   }, []);
 
   const handleDelete = useCallback(async (id: number) => {
-    if (confirm('Вы уверены, что хотите удалить эту категорию? Это действие необратимо.')) {
+    if (confirm(t('admin.categories.deleteConfirm'))) {
       try {
         await dictionaryService.deleteCategory(id);
         refreshCategories();
       } catch (error) {
         console.error('Error deleting category:', error);
-        alert('Ошибка при удалении категории');
+        alert(t('admin.categories.deleteError'));
       }
     }
-  }, [refreshCategories]);
+  }, [refreshCategories, t]);
 
   const handleSave = useCallback(async (category: Category) => {
     refreshCategories();
@@ -81,10 +88,21 @@ export const CategoryManager: React.FC = () => {
     );
   }
 
+  const totalPages = Math.ceil(allCategories.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedCategories = allCategories.slice(startIndex, endIndex);
+
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(1);
+    }
+  }, [totalPages, currentPage]);
+
   if (isLoading) {
     return (
       <div className="max-w-[1440px] mx-auto animate-fade-up flex items-center justify-center py-20">
-        <div className="text-white text-lg">Загрузка категорий...</div>
+        <div className="text-white text-lg">{t('admin.categories.loading')}</div>
       </div>
     );
   }
@@ -96,10 +114,10 @@ export const CategoryManager: React.FC = () => {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-2 h-8 bg-purple-500 rounded-full"></div>
-              <span className="text-[11px] font-black text-purple-500 uppercase tracking-[0.4em]">Node / Categories</span>
+              <span className="text-[11px] font-black text-purple-500 uppercase tracking-[0.4em]">{t('admin.categories.badge')}</span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-black text-white serif-modern tracking-tighter">Category Index</h1>
-            <p className="text-zinc-400 font-medium mt-3 text-lg">Управление категориями словаря ({categories.length} записей).</p>
+            <h1 className="text-5xl md:text-6xl font-black text-white serif-modern tracking-tighter">{t('admin.categories.title')}</h1>
+            <p className="text-zinc-400 font-medium mt-3 text-lg">{t('admin.categories.subtitle', { count: allCategories.length })}</p>
           </div>
           <button 
             onClick={handleAdd}
@@ -107,7 +125,7 @@ export const CategoryManager: React.FC = () => {
           >
             <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
             <svg className="w-5 h-5 group-hover:rotate-90 transition-all relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path d="M12 4v16m8-8H4" /></svg>
-            <span className="relative z-10">Add Category</span>
+            <span className="relative z-10">{t('admin.categories.addCategory')}</span>
           </button>
         </div>
 
@@ -116,15 +134,15 @@ export const CategoryManager: React.FC = () => {
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-zinc-900/50">
-                  <th className="px-12 py-8 text-[11px] font-black text-zinc-400 uppercase tracking-widest border-b border-white/5">ID</th>
-                  <th className="px-12 py-8 text-[11px] font-black text-zinc-400 uppercase tracking-widest border-b border-white/5">Title</th>
-                  <th className="px-12 py-8 text-[11px] font-black text-zinc-400 uppercase tracking-widest border-b border-white/5">Slug</th>
-                  <th className="px-12 py-8 text-[11px] font-black text-zinc-400 uppercase tracking-widest border-b border-white/5">Parent</th>
-                  <th className="px-12 py-8 text-[11px] font-black text-zinc-400 uppercase tracking-widest border-b border-white/5 text-right">Operations</th>
+                  <th className="px-12 py-8 text-[11px] font-black text-zinc-400 uppercase tracking-widest border-b border-white/5">{t('admin.categories.table.id')}</th>
+                  <th className="px-12 py-8 text-[11px] font-black text-zinc-400 uppercase tracking-widest border-b border-white/5">{t('admin.categories.table.title')}</th>
+                  <th className="px-12 py-8 text-[11px] font-black text-zinc-400 uppercase tracking-widest border-b border-white/5">{t('admin.categories.table.slug')}</th>
+                  <th className="px-12 py-8 text-[11px] font-black text-zinc-400 uppercase tracking-widest border-b border-white/5">{t('admin.categories.table.parent')}</th>
+                  <th className="px-12 py-8 text-[11px] font-black text-zinc-400 uppercase tracking-widest border-b border-white/5 text-right">{t('admin.categories.table.operations')}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
-                {categories.length > 0 ? categories.map((category) => (
+                {paginatedCategories.length > 0 ? paginatedCategories.map((category) => (
                   <tr key={category.id} className="hover:bg-white/5 transition-all group">
                     <td className="px-12 py-10 font-mono text-zinc-400 text-sm">{category.id}</td>
                     <td className="px-12 py-10 font-black text-white text-xl tracking-tight">{category.title}</td>
@@ -132,10 +150,10 @@ export const CategoryManager: React.FC = () => {
                     <td className="px-12 py-10">
                       {category.parent_id ? (
                         <span className="text-zinc-500 text-sm">
-                          {categories.find(c => c.id === category.parent_id)?.title || `ID: ${category.parent_id}`}
+                          {allCategories.find(c => c.id === category.parent_id)?.title || `ID: ${category.parent_id}`}
                         </span>
                       ) : (
-                        <span className="text-zinc-600 italic text-sm">Root</span>
+                        <span className="text-zinc-600 italic text-sm">{t('admin.categories.root')}</span>
                       )}
                     </td>
                     <td className="px-12 py-10">
@@ -162,8 +180,8 @@ export const CategoryManager: React.FC = () => {
                         <div className="w-20 h-20 bg-zinc-900 rounded-full flex items-center justify-center mx-auto text-zinc-600 border border-white/5">
                           <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>
                         </div>
-                        <p className="text-zinc-400 font-bold uppercase text-[11px] tracking-widest">No categories found</p>
-                        <button onClick={handleAdd} className="text-purple-500 font-black text-xs uppercase tracking-widest hover:text-purple-400 transition-colors">Add first category</button>
+                        <p className="text-zinc-400 font-bold uppercase text-[11px] tracking-widest">{t('admin.categories.empty')}</p>
+                        <button onClick={handleAdd} className="text-purple-500 font-black text-xs uppercase tracking-widest hover:text-purple-400 transition-colors">{t('admin.categories.addFirstCategory')}</button>
                       </div>
                     </td>
                   </tr>
@@ -171,6 +189,14 @@ export const CategoryManager: React.FC = () => {
               </tbody>
             </table>
           </div>
+          {totalPages > 1 && (
+            <AdminPagination
+              page={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+              color="purple"
+            />
+          )}
         </div>
       </div>
     </div>

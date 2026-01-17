@@ -64,6 +64,57 @@ const getTermFull = async (id: number): Promise<AdminTermResult | null> => {
   }
 };
 
+// Загружает полный термин со всеми переводами
+const loadFullTerm = async (termId: number): Promise<AdminTermResult | null> => {
+  try {
+    // Загружаем термин для всех языков, чтобы получить все переводы
+    const [termRu, termKz, termEn] = await Promise.all([
+      dictionaryService.getTerm(termId, Language.RU).catch(() => null),
+      dictionaryService.getTerm(termId, Language.KK).catch(() => null),
+      dictionaryService.getTerm(termId, Language.EN).catch(() => null),
+    ]);
+
+    const primaryTerm = termRu || termKz || termEn;
+    if (!primaryTerm) return null;
+
+    return {
+      id: primaryTerm.id,
+      word: termRu?.title || termKz?.title || termEn?.title || '',
+      translations: {
+        ru: termRu?.title || '',
+        kk: termKz?.title || '',
+        en: termEn?.title || '',
+      },
+      category: '',
+      status: primaryTerm.status === 'approved' ? 'Verified' : primaryTerm.status === 'pending' ? 'Pending' : 'Draft',
+      lastUpdated: new Date(primaryTerm.updated_at).getTime(),
+      views: primaryTerm.views,
+      category_id: primaryTerm.category_id,
+      definitions: {
+        ru: {
+          meaning: termRu?.definition || '',
+          examples: [],
+          synonyms: [],
+        },
+        kk: {
+          meaning: termKz?.definition || '',
+          examples: [],
+          synonyms: [],
+        },
+        en: {
+          meaning: termEn?.definition || '',
+          examples: [],
+          synonyms: [],
+        },
+      },
+      tags: primaryTerm.tags.map(tag => tag.slug),
+    } as AdminTermResult;
+  } catch (error) {
+    console.error('Error loading full term:', error);
+    return null;
+  }
+};
+
 const convertTermToAdminTerm = (term: Term): AdminTermResult => {
   return {
     id: term.id,
@@ -82,10 +133,50 @@ const convertTermToAdminTerm = (term: Term): AdminTermResult => {
 };
 
 export const adminService = {
-  getTerms: async (): Promise<AdminTermResult[]> => {
+  getTerms: async (page?: number, size?: number): Promise<AdminTermResult[]> => {
     try {
-      const terms = await dictionaryService.getTerms();
-      return terms.map(convertTermToAdminTerm);
+      // Сначала получаем список ID всех терминов
+      let termIds: number[] = [];
+      
+      if (page === undefined && size === undefined) {
+        // Загружаем все термины постранично для получения ID
+        let currentPage = 1;
+        const pageSize = 100;
+        let hasMore = true;
+
+        while (hasMore) {
+          const terms = await dictionaryService.getTerms(Language.RU, { page: currentPage, size: pageSize });
+          if (terms.length === 0) {
+            hasMore = false;
+          } else {
+            termIds.push(...terms.map(t => t.id));
+            if (terms.length < pageSize) {
+              hasMore = false;
+            } else {
+              currentPage++;
+            }
+          }
+        }
+      } else {
+        // Загружаем термины с пагинацией
+        const terms = await dictionaryService.getTerms(Language.RU, { page, size });
+        termIds = terms.map(t => t.id);
+      }
+
+      // Загружаем полные данные терминов для всех языков
+      // Ограничиваем количество параллельных запросов, чтобы не перегружать API
+      const batchSize = 10;
+      const allTerms: AdminTermResult[] = [];
+      
+      for (let i = 0; i < termIds.length; i += batchSize) {
+        const batch = termIds.slice(i, i + batchSize);
+        const batchResults = await Promise.all(
+          batch.map(id => loadFullTerm(id))
+        );
+        allTerms.push(...batchResults.filter((t): t is AdminTermResult => t !== null));
+      }
+
+      return allTerms;
     } catch (error) {
       console.error('Error fetching terms:', error);
       return [];

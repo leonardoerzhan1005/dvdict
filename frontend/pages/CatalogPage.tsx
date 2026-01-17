@@ -299,6 +299,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onTermClick }) => {
                 translation: term.title,
                 usageCount: term.views || 0,
                 snippet: term.short_definition || term.definition?.slice(0, 150) || 'Нет описания',
+                id: term.id,
               };
               return (
                 <WordCard

@@ -237,7 +237,7 @@ export const AdminSearchModal: React.FC<AdminSearchModalProps> = ({ isOpen, onCl
             <span className="flex items-center gap-1"><span className="bg-zinc-800 px-1 py-0.5 rounded border border-zinc-700 text-zinc-400 font-mono">↵</span> to select</span>
             <span className="flex items-center gap-1"><span className="bg-zinc-800 px-1 py-0.5 rounded border border-zinc-700 text-zinc-400 font-mono">↑↓</span> to navigate</span>
           </div>
-          <div>Polyglot Search</div>
+          <div> Search by dvdictionary </div>
         </div>
       </div>
     </div>

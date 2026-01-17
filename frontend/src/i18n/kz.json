@@ -35,7 +35,7 @@
     "home": "Басты",
     "about": "Біз туралы",
     "profile": "Профиль",
-    "favorites": "Таңдаулы",
+    "favorites": "Лайктар",
     "admin": "Админ",
     "login": "Кіру",
     "logout": "Шығу",
@@ -126,7 +126,7 @@
     "to": "Қа"
   },
   "favorites": {
-    "title": "Таңдаулы",
+    "title": "Лайктар",
     "empty": "Таңдаулы терминдер жоқ",
     "add": "Таңдаулыға қосу",
     "remove": "Таңдаулыдан жою",
@@ -161,7 +161,187 @@
     "users": "Пайдаланушылар",
     "moderation": "Модерация",
     "analytics": "Аналитика",
-    "settings": "Баптаулар"
+    "settings": "Баптаулар",
+    "sidebar": {
+      "menu": "Меню",
+      "overview": "Жалпы көзқарас",
+      "terms": "Терминдер",
+      "categories": "Категориялар",
+      "analytics": "Аналитика",
+      "settings": "Баптаулар",
+      "domesticViolence": "Тұрмыстық зорлық-зомбылық",
+      "manageViolence": "Тұрмыстық зорлық-зомбылықты дәлдікпен және оңай басқарыңыз.",
+      "openViolence": "Терминдерді қосу"
+    },
+    "layout": {
+      "dashboardTitle": "Терминологиялық терминдер",
+      "termsTitle": "Термин индексі",
+      "categoriesTitle": "Категорияларды басқару",
+      "analyticsTitle": "Тілдік аналитика",
+      "settingsTitle": "Баптауларыңызды басқарыңыз!",
+      "defaultTitle": "dvdictionary басқаруы"
+    },
+    "header": {
+      "search": "Іздеу",
+      "searchPlaceholder": "Іздеу (⌘K)",
+      "notifications": "Хабарландырулар",
+      "markAsRead": "Оқылған деп белгілеу",
+      "all": "Барлығы",
+      "unread": "Оқылмаған",
+      "newTermAdded": "Жаңа термин қосылды: {term}",
+      "repositorySyncCompleted": "Репозиторий синхронизациясы аяқталды",
+      "hoursAgo": "{hours}сағ бұрын"
+    },
+    "dashboard": {
+      "title": "Терминология репозиторийі",
+      "subtitle": "Үштілдік терминологияны басқарыңыз және зерттеңіз.",
+      "searchPlaceholder": "Терминдерді іздеу...",
+      "filters": {
+        "allTerms": "Барлық терминдер",
+        "verified": "Тексерілген",
+        "pending": "Күтуде",
+        "draft": "Жоба",
+        "technical": "Техникалық",
+        "political": "Саяси"
+      },
+      "popularTerms": "Танымал терминдер",
+      "popularTermsSubtitle": "Ең жиі пайдаланылатын терминологиялық жазбалар.",
+      "quickAccess": "Жылдам қол жетімділік",
+      "quickAccessSubtitle": "Админ панелінің негізгі бөлімдеріне өтіңіз.",
+      "termRepository": "Терминдер репозиторийі",
+      "entries": "жазбалар",
+      "usageStatistics": "Пайдалану статистикасы",
+      "discussion": "Талқылау",
+      "communityFeedback": "Қауымдастықтың кері байланысы",
+      "exportData": "Деректерді экспорттау",
+      "csvJsonFormats": "CSV, JSON форматтары",
+      "createCollection": "Коллекция құру",
+      "loading": "Деректер жүктелуде...",
+      "noTermsFound": "Терминдер табылмады",
+      "tryAdjustingFilters": "Іздеу немесе сүзгіні өзгертіп көріңіз.",
+      "clearFilters": "Сүзгілерді тазалау",
+      "noTermsYet": "Терминдер әлі жоқ",
+      "status": "Мәртебе",
+      "category": "Категория",
+      "general": "Жалпы",
+      "noTranslation": "Аударма жоқ"
+    },
+    "terminology": {
+      "title": "Термин индексі",
+      "subtitle": "Негізгі терминдерде {count} үштілдік салыстыру.",
+      "badge": "Түйін / Мұрағат",
+      "initializeNewEntry": "Жаңа жазбаны инициализациялау",
+      "searchPlaceholder": "Кілттік сөз, аударма немесе метадеректер бойынша сүзгілеу...",
+      "table": {
+        "coreDescriptor": "Негізгі дескриптор",
+        "localKk": "Жергілікті (KK)",
+        "localRu": "Жергілікті (RU)",
+        "category": "Категория",
+        "operations": "Операциялар"
+      },
+      "undefined": "Анықталмаған",
+      "uncategorized": "Категориясыз",
+      "loading": "Терминдер жүктелуде...",
+      "empty": "Репозиторий қазіргі уақытта бос",
+      "addFirstRecord": "Алғашқы жазбаны қосу",
+      "deleteConfirm": "Сіз бұл жазбаны жоюды қалайсыз ба? Бұл әрекет қайтымсыз.",
+      "deleteError": "Терминді жою кезінде қате",
+      "saveError": "Терминді сақтау кезінде қате",
+      "loadError": "Өңдеу үшін терминді жүктеу кезінде қате"
+    },
+    "categories": {
+      "title": "Категориялар индексі",
+      "subtitle": "Категорияларды басқару ({count} жазбалар).",
+      "badge": "Түйін / Категориялар",
+      "addCategory": "Категория қосу",
+      "table": {
+        "id": "ID",
+        "title": "Тақырып",
+        "slug": "Слаг",
+        "parent": "Ата-ана",
+        "operations": "Операциялар"
+      },
+      "root": "Түбір",
+      "loading": "Категориялар жүктелуде...",
+      "empty": "Категориялар табылмады",
+      "addFirstCategory": "Алғашқы категорияны қосу",
+      "deleteConfirm": "Сіз бұл категорияны жоюды қалайсыз ба? Бұл әрекет қайтымсыз.",
+      "deleteError": "Категорияны жою кезінде қате"
+    },
+    "analytics": {
+      "title": "Тілдік аналитика",
+      "subtitle": "Терминология пайдалану үлгілерінің терең түсінігі",
+      "searchVolumeTrends": "Іздеу көлемі тенденциялары",
+      "last30Days": "Соңғы 30 күн",
+      "lastQuarter": "Соңғы тоқсан",
+      "languageAffinity": "Тілдік жақындық",
+      "english": "Ағылшын (EN)",
+      "kazakh": "Қазақ (KK)",
+      "russian": "Орыс (RU)",
+      "basedOnEvents": "Бұл айда {count}к іздеу оқиғаларына негізделген",
+      "topSearchedTerms": "Ең ізделетін терминдер",
+      "exportCsv": "CSV экспорттау",
+      "termIdentity": "Термин сәйкестігі",
+      "globalRequests": "Жаһандық сұраулар",
+      "momentum": "Импульс",
+      "hits": "соққылар"
+    },
+    "settings": {
+      "title": "Баптауларыңызды басқарыңыз!",
+      "sections": {
+        "accountSettings": "Аккаунт баптаулары",
+        "securitySettings": "Қауіпсіздік баптаулары",
+        "notifications": "Хабарландырулар",
+        "billingSettings": "Төлем баптаулары",
+        "billingHistory": "Төлем тарихы"
+      },
+      "password": {
+        "title": "Құпия сөз",
+        "subtitle": "Аккаунтыңызды қауіпсіз сақтау үшін құпия сөзді жаңартыңыз.",
+        "currentPassword": "Ағымдағы құпия сөз",
+        "newPassword": "Жаңа құпия сөз",
+        "confirmPassword": "Құпия сөзді растау",
+        "currentPasswordPlaceholder": "Ағымдағы құпия сөзді енгізіңіз",
+        "newPasswordPlaceholder": "Жаңа құпия сөзді енгізіңіз (мин. 8 таңба)",
+        "confirmPasswordPlaceholder": "Жаңа құпия сөзді растаңыз",
+        "minCharacters": "Кемінде 8 таңба",
+        "changePassword": "Құпия сөзді өзгерту",
+        "changing": "Өзгертілуде...",
+        "allFieldsRequired": "Барлық өрістер міндетті",
+        "minLengthRequired": "Жаңа құпия сөз кемінде 8 таңбадан тұруы керек",
+        "passwordsDontMatch": "Жаңа құпия сөздер сәйкес келмейді",
+        "samePassword": "Жаңа құпия сөз ағымдағыдан ерекше болуы керек",
+        "success": "Құпия сөз сәтті өзгертілді!",
+        "error": "Құпия сөзді өзгерту кезінде қате. Ағымдағы құпия сөзді тексеріңіз."
+      },
+      "accountSecurity": {
+        "title": "Аккаунт қауіпсіздігі",
+        "subtitle": "Аккаунтыңыздың қауіпсіздік күйі туралы ақпарат.",
+        "emailVerification": "Email растау",
+        "emailVerified": "Сіздің email расталған",
+        "pleaseVerify": "Email мекенжайыңызды растаңыз",
+        "verified": "Расталған",
+        "pending": "Күтуде",
+        "accountRole": "Аккаунт рөлі",
+        "currentRole": "Сіздің ағымдағы рөліңіз: {role}"
+      },
+      "activeSessions": {
+        "title": "Белсенді сессиялар",
+        "subtitle": "Аккаунтыңызға қосылған құрылғыларды басқару",
+        "logoutAll": "Барлық құрылғылардан шығу",
+        "currentDevice": "Ағымдағы құрылғы",
+        "thisBrowser": "Бұл браузер сессиясы",
+        "active": "Белсенді"
+      },
+      "accountInformation": {
+        "title": "Аккаунт ақпараты",
+        "subtitle": "Аккаунт ақпаратын жаңартыңыз.",
+        "email": "Email",
+        "emailCannotChange": "Email өзгертілмейді",
+        "name": "Аты"
+      },
+      "comingSoon": "Бұл бөлім жақында шығады..."
+    }
   },
   "footer": {
     "about": "Жоба туралы",
@@ -228,7 +408,7 @@
       "accessRepository": "Репозиторийге қол жеткізу",
       "institutionalContact": "Институционалдық байланыс"
     },
-    "footer": "Polyglot Hub — Орталық Азия терминологиясындағы стандарт"
+    "footer": "dvdictionary Hub — Орталық Азия терминологиясындағы стандарт"
   },
   "contact": {
     "badge": "Институционалдық қатынастар",

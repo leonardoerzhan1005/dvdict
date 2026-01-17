@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { AdminSidebar } from './components/AdminSidebar';
 import { AdminHeader } from './components/AdminHeader';
+import { useTranslation } from '../src/hooks/useTranslation';
 
 export type AdminTab = 'dashboard' | 'terms' | 'categories' | 'analytics' | 'settings';
 
@@ -14,21 +15,22 @@ interface AdminLayoutProps {
 
 export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeTab, setActiveTab, onExit }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { t } = useTranslation();
 
   const getPageTitle = () => {
     switch (activeTab) {
       case 'dashboard': 
-        return <span className="font-light">Terminology <span className="font-medium text-white">Terms</span></span>;
+        return <span className="font-light">{t('admin.layout.dashboardTitle').split(' ')[0]} <span className="font-medium text-white">{t('admin.layout.dashboardTitle').split(' ').slice(1).join(' ')}</span></span>;
       case 'terms': 
-        return <span className="font-medium">Term <span className="text-zinc-500">Index</span></span>;
+        return <span className="font-medium">{t('admin.layout.termsTitle').split(' ')[0]} <span className="text-zinc-500">{t('admin.layout.termsTitle').split(' ').slice(1).join(' ')}</span></span>;
       case 'categories': 
-        return <span className="font-medium">Category <span className="text-zinc-500">Management</span></span>;
+        return <span className="font-medium">{t('admin.layout.categoriesTitle').split(' ')[0]} <span className="text-zinc-500">{t('admin.layout.categoriesTitle').split(' ').slice(1).join(' ')}</span></span>;
       case 'analytics': 
-        return <span className="font-medium">Linguistic <span className="text-zinc-500">Analytics</span></span>;
+        return <span className="font-medium">{t('admin.layout.analyticsTitle').split(' ')[0]} <span className="text-zinc-500">{t('admin.layout.analyticsTitle').split(' ').slice(1).join(' ')}</span></span>;
       case 'settings': 
-        return <span className="font-medium">Control your <span className="text-zinc-500">preferences!</span></span>;
+        return <span className="font-medium">{t('admin.layout.settingsTitle').split(' ').slice(0, -1).join(' ')} <span className="text-zinc-500">{t('admin.layout.settingsTitle').split(' ').slice(-1)[0]}</span></span>;
       default: 
-        return <span className="font-medium">Polyglot <span className="text-zinc-500">Management</span></span>;
+        return <span className="font-medium">{t('admin.layout.defaultTitle').split(' ')[0]} <span className="text-zinc-500">{t('admin.layout.defaultTitle').split(' ').slice(1).join(' ')}</span></span>;
     }
   };
 

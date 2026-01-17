@@ -135,16 +135,11 @@ export const FavoritesPage: React.FC = () => {
                       translation: translation,
                       usageCount: term.views || 0,
                       snippet: snippet.substring(0, 120) + (snippet.length > 120 ? '...' : ''),
+                      id: term.id,
                     }}
                     onClick={() => handleTermClick(term.id)}
                   />
-                  <button
-                    onClick={(e) => handleRemoveFavorite(term.id, e)}
-                    className="absolute top-4 right-4 w-10 h-10 bg-red-500/90 hover:bg-red-500 text-white rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-lg hover:scale-110 z-10"
-                    title={t('favorites.remove') as string}
-                  >
-                    <IconHeart size={18} filled={true} />
-                  </button>
+                  
                 </div>
               );
             })}

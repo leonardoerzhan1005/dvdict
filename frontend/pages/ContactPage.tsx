@@ -35,13 +35,13 @@ export const ContactPage: React.FC = () => {
               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">
                 {t('contact.technicalSupport') as string}
               </p>
-              <p className="text-lg font-black text-[#1a2b56]">support@polyglot.io</p>
+              <p className="text-lg font-black text-[#1a2b56]">support@dvdictionary.io</p>
             </div>
             <div>
               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">
                 {t('contact.generalInquiry') as string}
               </p>
-              <p className="text-lg font-black text-[#1a2b56]">hello@polyglot.io</p>
+              <p className="text-lg font-black text-[#1a2b56]">hello@dvdictionary.io</p>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@ export const ContactPage: React.FC = () => {
             <img 
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" 
               className="rounded-[3.5rem] w-full h-[400px] object-cover" 
-              alt="Polyglot Headquarters" 
+              alt="dvdictionary Headquarters" 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a2b56]/60 to-transparent rounded-[3.5rem]"></div>
             <div className="absolute bottom-12 left-12 text-white">

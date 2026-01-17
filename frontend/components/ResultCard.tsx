@@ -1,7 +1,7 @@
 import React from 'react';
 import { TermResult, Language } from '../types';
 import { getLanguageName } from '../utils/languageUtils';
-
+import { useTranslation } from '../src/hooks/useTranslation';
 interface ResultCardProps {
   result: TermResult;
   targetLang: Language;
@@ -10,7 +10,7 @@ interface ResultCardProps {
 export const ResultCard: React.FC<ResultCardProps> = ({ result, targetLang }) => {
   const def = result.definitions[targetLang];
   const trans = result.translations[targetLang];
-
+  const { t } = useTranslation();
   return (
     <div className="w-[1440px] mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 space-y-8">
       
@@ -49,7 +49,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({ result, targetLang }) =>
           
           <section className="space-y-10">
             <div className="flex items-center gap-6">
-               <h3 className="text-[11px] font-black text-blue-900 uppercase tracking-[0.3em] whitespace-nowrap">Full Definition</h3>
+               <h3 className="text-[11px] font-black text-blue-900 uppercase tracking-[0.3em] whitespace-nowrap">{t('fullDefinitionTitle')}</h3>
                <div className="h-px w-full bg-slate-100"></div>
             </div>
             <div className="flex flex-col md:flex-row gap-12">
@@ -111,9 +111,8 @@ export const ResultCard: React.FC<ResultCardProps> = ({ result, targetLang }) =>
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/10 to-transparent pointer-events-none"></div>
             <div className="relative z-10 space-y-12">
               <div className="flex items-center justify-between">
-                <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Trilingual Framework</h3>
-                <span className="text-[9px] font-black text-indigo-400 uppercase px-3 py-1 bg-indigo-400/5 border border-indigo-400/20 rounded-full">AI Consensus Verified</span>
-              </div>
+                <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Translation</h3>
+               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {Object.entries(result.translations).map(([lang, val]) => {
                   if (!val) return null;
@@ -135,16 +134,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({ result, targetLang }) =>
       </div>
       
       {/* ACTIONS FOOTER */}
-      <div className="flex flex-col sm:flex-row justify-between items-center px-10 gap-6">
-        <button className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] hover:text-blue-900 transition-colors flex items-center gap-3">
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
-          Propose Correction
-        </button>
-        <div className="flex gap-10">
-           <button className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] hover:text-slate-900 transition-colors">Print Page</button>
-           <button className="text-[10px] font-black text-blue-900 uppercase tracking-[0.3em] hover:opacity-70 transition-colors">Copy URL</button>
-        </div>
-      </div>
+       
     </div>
   );
 };

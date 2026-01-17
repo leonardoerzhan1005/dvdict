@@ -3,17 +3,21 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Установка системных зависимостей
-RUN apt-get update && apt-get install -y \
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
     gcc \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 # Копирование requirements
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копирование кода приложения
+# Копирование кода приложения (все сервисы нужны для импортов)
 COPY libs/ ./libs/
-COPY apps/admin_service/ ./apps/admin_service/
+COPY apps/ ./apps/
+COPY scripts/ ./scripts/
 
 # Установка shared библиотеки
 WORKDIR /app/libs/shared
@@ -27,7 +31,7 @@ RUN mkdir -p /app/data
 
 # Установка переменных окружения
 ENV PYTHONPATH=/app
-ENV DATABASE_URL=sqlite:///./data/admin_service.db
+ENV DATABASE_URL=sqlite:////app/data/admin_service.db
 
 # Запуск приложения
 WORKDIR /app/apps/admin_service

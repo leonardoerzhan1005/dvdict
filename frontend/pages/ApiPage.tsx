@@ -9,7 +9,7 @@ export const ApiPage: React.FC = () => {
             API Документация
           </h1>
           <p className="text-slate-500 font-medium text-xl leading-relaxed">
-            Интегрируйте Polyglot Terminology Hub в ваши приложения с помощью нашего REST API.
+            Интегрируйте  Terminology Hub в ваши приложения с помощью нашего REST API.
           </p>
         </div>
 
